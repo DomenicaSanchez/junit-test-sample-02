@@ -18,15 +18,14 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .csrf().disable()
-                .authorizeHttpRequests()
-                .requestMatchers(
-                        "/v3/api-docs",
-                        "/v3/api-docs/**",
-                        "/swagger-ui.html",
-                        "/swagger-ui/**").permitAll()
-                .anyRequest().authenticated()
-                .and()
-                .httpBasic();
+                .authorizeHttpRequests(authorize -> authorize
+                        .requestMatchers(
+                                "/v3/api-docs",
+                                "/v3/api-docs/**",
+                                "/swagger-ui.html",
+                                "/swagger-ui/**").permitAll()
+                        .anyRequest().authenticated())
+                .httpBasic(httpBasic -> {});
         return http.build();
     }
 

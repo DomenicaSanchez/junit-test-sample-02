@@ -35,7 +35,7 @@ public class CakeDatabasePopulator {
     public void populateCakeDatabase() throws Exception {
         log.info("populating cake database from {}", cakesUrl);
 
-        List<CakePopulatorResponse> cakesToPopulate = new ObjectMapper().readValue(new URL(cakesUrl), new TypeReference<>() {
+        List<CakePopulatorResponse> cakesToPopulate = new ObjectMapper().readValue(new URL(cakesUrl), new TypeReference<List<CakePopulatorResponse>>() {
         });
 
         List<Cake> cakes = cakesToPopulate.stream()
